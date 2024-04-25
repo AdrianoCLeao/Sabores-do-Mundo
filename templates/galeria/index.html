@@ -1,0 +1,67 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block content %}
+    {% for message in messages %}
+    <div class="message-container" style="position: fixed; top: 20px; left: 50%;transform: translateX(-50%); background-color: #baced8; padding: 10px 20px; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1)">
+        <p class="message" style="color: #007bff; font-size: 16px; margin: 0;">{{ message }}</p>
+    </div>
+    {% endfor %}
+    <div class="pagina-inicial">
+        <main class="principal">
+            <section class="conteudo">
+                <section class="banner">
+                    <img class="banner__imagem" src="{% static 'assets/imagens/Design sem nome (6).png' %}" alt="">
+                    <div class="overlay_banner"></div>
+                    <h1 class="banner__titulo">Aprenda as melhores receitas!</h1>
+                </section>
+                <section class="tags">
+                    <ul class="tags__lista">
+                        <li class="tags__tag" style="background-color: #44081d;">
+                            <a href="{% url 'filtrar_cards' 'Economicas' %}">Econômicas</a>
+                        </li>
+                        <li class="tags__tag" style="background-color: #44081d;">
+                            <a href="{% url 'filtrar_cards' 'Japonesa' %}">Japonesa</a>
+                        </li>
+                        <li class="tags__tag" style="background-color: #44081d;">
+                            <a href="{% url 'filtrar_cards' 'Doces' %}">Doces</a>
+                        </li>
+                        <li class="tags__tag" style="background-color: #44081d;">
+                            <a href="{% url 'filtrar_cards' 'Lanches' %}">Lanches</a>
+                        </li>
+                        <li class="tags__tag" style="background-color: #44081d;">
+                            <a href="{% url 'filtrar_cards' 'Italiana' %}">Italiana</a>
+                        </li>
+                    </ul>
+                </section>
+                <br><br>
+                <section class="galeria">
+                    <div class="cards">
+                        <ul class="cards__lista">
+                            {% if cards %}
+                            {% for fotografia in cards %}
+                            <li class="card">
+                                <a href="{% url 'imagem' fotografia.id %}">
+                                    <img class="card__imagem" src="{{ fotografia.foto.url }}" alt="">
+                                    <div class="overlay"></div>
+                                </a>
+                                <span class="card__tag">{{ fotografia.categoria }}</span>
+                                <div class="card__info">
+                                    <p class="card__titulo" style="color: black;">{{ fotografia.nome }}</p>
+                                    <div class="card__texto">
+                                        <p class="card__descricao" style="color: black;">{{ fotografia.legenda }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            {% else %}
+                            <li>
+                                <p>Fotografias não encontradas</p>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+{% endblock %}

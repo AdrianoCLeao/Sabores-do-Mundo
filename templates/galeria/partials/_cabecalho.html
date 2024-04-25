@@ -1,0 +1,27 @@
+{% load static %}
+
+<header class="cabecalho">
+    <a href="{% url 'index' %}">
+        <img src="{% static 'assets/logo/logo fonte.png' %}" alt="" style="height: 80px; width: auto; padding-left: 250px; padding-top: 20px;"/>
+    </a>
+    <div class="cabecalho__busca" style="padding-top: 20px;">
+        <div class="busca__fundo">
+            <form action="{% url 'buscar' %}">
+                <input class="busca__input" type="text" placeholder="O que você procura?" name="buscar">
+            </form>
+            <img class="busca__icone" src="{% static 'assets\ícones\1x\frigideira.png' %}" alt="">
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="cabecalho_login" style="font-weight: bold; font-size: large; padding-right: 200px; padding-top: 20px;">
+        <a href="{% url 'nova_receita' %}"><img src="{% static 'assets/ícones/1x/adicao.png' %}" style="height: 15px; width: auto;">Nova Receita</a>
+    </div>
+    <div class="cabecalho_login" style="font-size: large; padding-right: 200px; padding-top: 20px;">
+        <a href="{% url 'logout' %}"><img src="{% static 'assets/ícones/1x/lampada (1).png' %}" style="height: 25px; width: auto;">{{ user.username }}</a>
+    </div>
+    {% else %}
+    <div class="cabecalho_login" style="font-weight: bold; font-size: large; padding-right: 200px; padding-top: 20px;">
+        <a href="{% url 'login' %}"><img src="{% static 'assets/ícones/1x/lampada.png' %}" style="height: 25px; width: auto;">Login</a>
+    </div>
+    {% endif %}
+</header>

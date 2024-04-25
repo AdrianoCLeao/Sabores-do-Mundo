@@ -1,0 +1,26 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="pagina-inicial">
+        <main class="principal">
+            <div class="container">
+                <div class="texto">
+                    <h4 style="font-weight: bold; font-size: 32px;">{{ fotografia.nome }}</h4>
+                        <p>Por: {{ fotografia.legenda }} </p>
+                        <br><br>
+                        <p>{{ fotografia.descricao }}</p>
+                        <br>
+                        <h6 style="font-weight: bold;">Ingredientes</h6><br>
+                            <p>{{ fotografia.ingredientes|linebreaks }}</p><br>
+                        <h6 style="font-weight: bold;">Modo de Preparo</h6><br>
+                            <p>{{ fotografia.modo_preparo|linebreaks }}</p><br>
+                </div>
+                <div class="imagem">
+                    <img src="{{ fotografia.foto.url }}" alt="">
+                    <div class="overlay_imagem"></div>
+                </div>
+            </div>
+            </section>
+        </main>
+    </div>
+{% endblock %}

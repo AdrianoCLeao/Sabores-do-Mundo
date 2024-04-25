@@ -1,0 +1,52 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="pagina-inicial">
+        <main class="principal">
+            <section class="conteudo">
+                <section class="banner">
+                    <img class="banner__imagem" src="{% static 'assets/imagens/Design sem nome (6).png' %}" alt="">
+                    <div class="overlay_banner"></div>
+                    <h1 class="banner__titulo">Aprenda as melhores receitas!</h1>
+                </section>
+                <section class="tags">
+                    <ul class="tags__lista">
+                        <li class="tags__tag" style="background-color: #44081d;">Econômicas</li>
+                        <li class="tags__tag" style="background-color: #44081d;">Japonesa</li>
+                        <li class="tags__tag" style="background-color: #44081d;">Doces</li>
+                        <li class="tags__tag" style="background-color: #44081d;">Lanches</li>
+                        <li class="tags__tag" style="background-color: #44081d;">Italiana</li>
+                    </ul>
+                </section>
+                <br><br>
+                <section class="galeria">
+                    {% if cards %}
+                    {% for fotografia in cards %}
+                    <div class="cards">
+                        <ul class="cards__lista">
+                            <li class="card">
+                                <a href="{% url 'imagem' fotografia.id %}">
+                                    <img class="card__imagem" src="{{ fotografia.foto.url }}" alt="">
+                                    <div class="overlay"></div>
+                                </a>
+                                <span class="card__tag">Italiana</span>
+                                <div class="card__info">
+                                    <p class="card__titulo" style="color: black;">{{ fotografia.nome }}</p>
+                                    <div class="card__texto">
+                                        <p class="card__descricao" style="color: black;">{{ fotografia.legenda }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div>
+                        <p>Fotografias não encontradas</p>
+                    </div>
+                    {% endif %}
+                </section>
+            </section>
+        </main>
+    </div>
+{% endblock %}
