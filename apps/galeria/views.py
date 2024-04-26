@@ -37,3 +37,4 @@ def nova_receita(request):
             return redirect('index')
 
       return render(request, 'galeria/nova_receita.html', {'form': form})
+
